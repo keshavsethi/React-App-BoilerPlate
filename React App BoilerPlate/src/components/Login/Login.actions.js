@@ -1,0 +1,51 @@
+import { LOGIN_INIT, LOGOUT_INIT, LOGIN_SUCCESS, LOGIN_FAILURE} from './Login.constants';
+// similar functions for logout as well
+const initLoginCreator = () => ({
+  type: LOGIN_INIT,
+});
+
+const initLogoutCreator = () => ({
+  type: LOGOUT_INIT,
+});
+
+const loginSuccessCreator = (data) => ({
+  type: LOGIN_SUCCESS,
+  payload: {
+    email: data.email,
+  }
+});
+
+const loginFailureCreator = (errorMessage) => ({
+  type: LOGIN_FAILURE,
+  payload: {
+    error: errorMessage,
+  }
+});
+
+const performLogin = () => {
+  return async (disptach) => {
+    disptach(initLoginCreator());
+  };
+};
+
+const loginSuccess = ( email ) => {
+  return async (disptach) => {
+    disptach(loginSuccessCreator(email));
+  };
+};
+
+const loginFailure = (errorMessage) => {
+  return async (disptach) => {
+    disptach(loginFailureCreator(errorMessage));
+  };
+};
+
+const performLogout = () => {
+  return async (disptach) => {
+    disptach(initLogoutCreator());
+  };
+};
+
+const dummy = () => {};
+
+export { performLogin, loginSuccess, loginFailure, performLogout, dummy };

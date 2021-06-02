@@ -23,9 +23,9 @@ class HomeWrapper extends PureComponent {
           <div style={{ height: "100vh" }} className="container valign-wrapper">
             <div className="row">
             <div className="col s12 center-align">
-                <h1 style={{ padding: "10vh", color:"pink" }}>
-                <b>Hey,</b> {data.email}Welcome  <span role="img" aria-label="hello">🚀  </span>
-                </h1>
+                <h2 style={{ padding: "10vh", color:"pink" }}>
+                <b>Hey,</b> {data.email} | How you doin?  <span role="img" aria-label="hello">🚀  </span>
+                </h2>
                 <Button
                     fullWidth
                     variant="contained"

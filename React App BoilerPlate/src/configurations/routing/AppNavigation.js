@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import HomeContainer from '../../components/Home/Home.Container';
+import RegisterContainer from '../../components/Register/Register.Container';
 
 const LoginContainer = React.lazy(() =>
   import(
@@ -15,6 +16,12 @@ const appRoutes = {
       needAuth: true,
       exact: true,
     },
+    register: {
+      path: '/register',
+      component: RegisterContainer,
+      needAuth: false,
+      exact: false,
+    }
   },
   authentication: {
     login: {
@@ -22,7 +29,7 @@ const appRoutes = {
       component: LoginContainer,
       needAuth: false,
       exact: false,
-    },
+    }
   },
 };
 

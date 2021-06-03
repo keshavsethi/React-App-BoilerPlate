@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import pageConst from './Login.pageConst'
 
-// as in template 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(3),
@@ -62,24 +62,24 @@ export default function LoginWrapper(props) {
               }
             else {
               console.log("fail");
-              const errorMessage = "Invalid user credentials";
+              const errorMessage = pageConst.error.email;
               actions.loginFailure({errorMessage});
             }
           }
           else {
-            return setPasswordError('Strong Password Please');
+            return setPasswordError(pageConst.error.password);
           }
         }
         else {
-          return setPasswordError('Please enter your password!');
+          return setPasswordError(pageConst.error.password);
         }
       }
       else{
-        setEmailError('Correct Email Please');
+        setEmailError(pageConst.error.email);
       }
     }
     else {
-      return setEmailError('Please enter your email address');
+      return setEmailError(pageConst.error.email);
     }
     return true;
   }
@@ -89,7 +89,7 @@ export default function LoginWrapper(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5" style={{marginTop: '1em'}}>
-          <span style={{fontWeight: 'bolder', fontSize: '1.3em', color:'blue'}}>Login Here!   <span role="img" aria-label="hello">🚀  </span></span>
+          <span style={{fontWeight: 'bolder', fontSize: '1.3em', color:'blue'}}>{pageConst.text.title}<span role="img" aria-label="hello">🚀  </span></span>
         </Typography>
         {errors ? <Alert severity="error">{errors}</Alert> : <></>}
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -138,10 +138,10 @@ export default function LoginWrapper(props) {
             className={classes.submit}
             disabled={loading}
           >
-            Log In
+            {pageConst.text.submit}
           </Button>
           }
-          <Link to="/register" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'cyans'}}>Register <span role="img" aria-label="hello">😇 </span></Link>
+          <Link to="/register" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'cyans'}}>{pageConst.text.register} <span role="img" aria-label="hello">😇 </span></Link>
         </form>
       </div>
     </Container>

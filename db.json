@@ -34,6 +34,20 @@
         "password": "kabir@kabir.com"
       },
       "id": 5
+    },
+    {
+      "user": {
+        "email": "f20170657@pilani.bits-pilani.ac.in",
+        "password": "mmnmnmnmnmnmnmnm"
+      },
+      "id": 6
+    },
+    {
+      "user": {
+        "email": "rupali@keshav.in",
+        "password": "rupali@keshav.in"
+      },
+      "id": 7
     }
   ]
 }

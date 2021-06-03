@@ -4,6 +4,7 @@ const DEFAULT_STATE = {
   loading: false,
   errors: null,
   data: {},
+  auth: false,
 };
 
 const transformAndStoreLogingData = data => {
@@ -17,10 +18,10 @@ const transformErrors = data => {
 const LoginReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case LOGIN_INIT:
-      return { ...state, loading: true };
+      return { ...state, loading: false };
     case LOGIN_SUCCESS: {
       const userData = transformAndStoreLogingData(action.payload);
-      return { ...state, loading: false, data: userData };
+      return { ...state, loading: false, data: userData, auth: true };
     }
     case LOGIN_FAILURE: {
       const err = transformErrors(action.payload);

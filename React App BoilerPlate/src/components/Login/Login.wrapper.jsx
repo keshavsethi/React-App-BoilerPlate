@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 // as in template 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,13 +33,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginWrapper(props) {
   const classes = useStyles();
-  const {loading, errors, actions} = props
+  const {loading, errors, actions, auth} = props
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const history = useHistory();
-
   const ValidateEmail = (mail) => {
   if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) return true
   return false
@@ -54,14 +54,14 @@ export default function LoginWrapper(props) {
           if(password.length >= 10) {
             setPasswordError('');
             actions.login();
-            const response = true;
-            if(response) {
-              await setTimeout(() => { 
-                actions.loginSuccess({email, password});
-                history.push('/');// if login
-              }, 3000);
-            }
+            await actions.loginSuccess({email, password});
+            console.log(auth);
+            if(auth) {
+              actions.loginSuccess({email, password});
+                history.push('/');
+              }
             else {
+              console.log("fail");
               const errorMessage = "Invalid user credentials";
               actions.loginFailure({errorMessage});
             }
@@ -141,6 +141,7 @@ export default function LoginWrapper(props) {
             Log In
           </Button>
           }
+          <Link to="/register" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'cyans'}}>Register <span role="img" aria-label="hello">😇 </span></Link>
         </form>
       </div>
     </Container>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -53,12 +53,12 @@ export default function RegisterWrapper(props) {
         if(password) {
           if(password.length >= 10) {
             setPasswordError('');
-            actions.register();
+            actions.register({email, password});
             const response = true;
             if(response) {
               await setTimeout(() => { 
                 actions.registerSuccess({email, password});
-                history.push('/login');// if register
+                history.push('/login');
               }, 3000);
             }
             else {
@@ -140,6 +140,7 @@ export default function RegisterWrapper(props) {
             Register
           </Button>
           }
+          <Link to="/login" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'cyans'}}>Login <span role="img" aria-label="hello">😇 </span></Link>
         </form>
       </div>
     </Container>

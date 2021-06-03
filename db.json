@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "user": {
+        "email": "keshav.sethi0004@gmail.com",
+        "password": "kehhagshagshgd"
+      },
+      "id": 1
+    },
+    {
+      "user": {
+        "email": "f20170657@pilani.bits-pilani.ac.in",
+        "password": "keshavsvgvsga"
+      },
+      "id": 2
+    },
+    {
+      "user": {
+        "email": "keshav.sethi0004@gmail.com",
+        "password": "dsndbnsbdnsbdnsbds"
+      },
+      "id": 3
+    },
+    {
+      "user": {
+        "email": "keshav@gmail.com",
+        "password": "keshavsethi"
+      },
+      "id": 4
+    },
+    {
+      "user": {
+        "email": "kabir@kabir.com",
+        "password": "kabir@kabir.com"
+      },
+      "id": 5
+    }
+  ]
+}

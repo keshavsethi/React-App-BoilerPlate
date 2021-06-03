@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { LOGIN_INIT, LOGOUT_INIT, LOGIN_SUCCESS, LOGIN_FAILURE} from './Login.constants';
 // similar functions for logout as well
 const initLoginCreator = () => ({
@@ -28,9 +29,24 @@ const performLogin = () => {
   };
 };
 
-const loginSuccess = ( email ) => {
+const loginSuccess = (details) => {
   return async (disptach) => {
-    disptach(loginSuccessCreator(email));
+    console.log(details);
+    const url = `http://localhost:3000/users?user.email=${details.email}`;
+    await axios.get(url)
+    .then(res => {
+      console.log("returned thing");
+      console.log(res.data);
+      if(res.data.length === 0) console.log("NOT Valid Email");
+      if(details.password === res.data[0].user.password){
+        console.log("Correct passowrd")
+        disptach(loginSuccessCreator(details));
+      }
+      else {
+        console.log("wrong password");
+        disptach(loginFailureCreator('Error'));
+    }
+    })
   };
 };
 

@@ -7,81 +7,6 @@ import { performRegister, registerSuccess, registerFailure, ValidateEmail } from
 
 
 class RegisterContainer extends PureComponent {
-    // history = useHistory();
-    
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //        email:'',
-    //        password:'',
-    //        emailError:'',
-    //        passwordError:'',
-    //    };
-    // }
-    
-    // emailchange = (e) =>{
-    //     this.setState({
-    //        email:e.target.value
-    //     });
-    // }
-
-    // passwordchange = (e) =>{
-    //     this.setState({
-    //        password:e.target.value
-    //     });
-    // }
-
-    // handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const {email,password,emailError,passwordError} = this.state;
-    //     if(email) {
-    //       const validEmail =ValidateEmail(email);
-    //       if(validEmail) {
-    //         this.setState({
-    //             email:''
-    //         });
-    //         if(password) {
-    //           if(password.length >= 10) {
-    //               this.setState({
-    //                   password:''
-    //               });
-    //             this.register();
-    //             const response = true;
-    //             if(response) {
-    //               await setTimeout(() => { 
-    //                 registerSuccess({email, password});
-    //               }, 3000);
-    //             }
-    //             else {
-    //               const errorMessage = "Invalid user credentials";
-    //               registerFailure({errorMessage});
-    //             }
-    //           }
-    //           else {
-    //               this.setState({
-    //                   passwordError:'Wrong Passowrd'
-    //               });
-    //           }
-    //         }
-    //         else {
-    //                this.setState({
-    //                   passwordError:'Wrong Passowrd'
-    //               });
-    //         }
-    //       }
-    //       else{
-    //           this.setState({
-    //               emailError:'Wrong Email'
-    //           });
-    //       }
-    //     }
-    //     else {
-    //       this.setState({
-    //           emailError:'Wrong Email'
-    //       });;
-    //     }
-    //     return true;
-    //   }
 
   render() {
     const {loading, errors, data, actions} = this.props
@@ -101,8 +26,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    register: () => {
-      return dispatch(performRegister());
+    register: users => {
+      return dispatch(performRegister(users));
     },
     registerSuccess: registerDetails => {
       return dispatch(registerSuccess(registerDetails));

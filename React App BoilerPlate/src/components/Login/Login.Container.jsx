@@ -7,8 +7,8 @@ import { performLogin, loginSuccess, loginFailure, performLogout } from './Login
 class LoginContainer extends PureComponent {
 
   render() {
-    const {loading, errors, data, actions} = this.props
-    return <LoginWrapper loading={loading} errors={errors} data={data} actions={actions}/>;
+    const {loading, errors, data, actions, auth} = this.props
+    return <LoginWrapper loading={loading} auth={auth} errors={errors} data={data} actions={actions}/>;
   }
 }
 
@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
   loading: state.login.loading,
   errors: state.login.errors,
   data: state.login.data,
+  auth: state.login.auth,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
     login: () => {
       return dispatch(performLogin());
     },
-    loginSuccess: loginDetails => {
-      return dispatch(loginSuccess(loginDetails));
+    loginSuccess: (details) => {
+      return dispatch(loginSuccess(details));
     },
     loginFailure: errorMessage => {
       return dispatch(loginFailure(errorMessage));

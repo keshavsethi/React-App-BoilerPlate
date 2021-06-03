@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import pageConst from './Register.pageConst'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,24 +63,24 @@ export default function RegisterWrapper(props) {
               }, 3000);
             }
             else {
-              const errorMessage = "Invalid user credentials";
+              const errorMessage = pageConst.error.email;
               actions.registerFailure({errorMessage});
             }
           }
           else {
-            return setPasswordError('Strong Password Please');
+            return setPasswordError(pageConst.error.password);
           }
         }
         else {
-          return setPasswordError('Please enter your password!');
+          return setPasswordError(pageConst.error.password);
         }
       }
       else{
-        setEmailError('Correct Email Please');
+        setEmailError(pageConst.error.email);
       }
     }
     else {
-      return setEmailError('Please enter your email address');
+      return setEmailError(pageConst.error.email);
     }
     return true;
   }
@@ -88,7 +89,7 @@ export default function RegisterWrapper(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5" style={{marginTop: '1em'}}>
-          <span style={{fontWeight: 'bolder', fontSize: '1.3em', color:'blue'}}>Register Here  <span role="img" aria-label="hello">🚀  </span></span>
+          <span style={{fontWeight: 'bolder', fontSize: '1.3em', color:'blue'}}>{pageConst.text.title}  <span role="img" aria-label="hello">🚀  </span></span>
         </Typography>
         {errors ? <Alert severity="error">{errors}</Alert> : <></>}
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -137,10 +138,10 @@ export default function RegisterWrapper(props) {
             className={classes.submit}
             disabled={loading}
           >
-            Register
+            {pageConst.text.submit}
           </Button>
           }
-          <Link to="/login" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'cyans'}}>Login <span role="img" aria-label="hello">😇 </span></Link>
+          <Link to="/login" style={{ fontWeight: 'bolder', textDecoration: 'none', fontSize: '1.0em', color:'purple'}}>{pageConst.text.login} <span role="img" aria-label="hello">😇 </span></Link>
         </form>
       </div>
     </Container>
